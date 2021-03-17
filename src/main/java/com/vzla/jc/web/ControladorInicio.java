@@ -1,5 +1,6 @@
 package com.vzla.jc.web;
 
+import com.vzla.jc.dao.PersonaDao;
 import com.vzla.jc.domain.Persona;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,10 +19,12 @@ public class ControladorInicio {
     private PersonaDao personaDao;
     @GetMapping("/")
     public String inicio(Model model) {
+        
+        var personas = personaDao.findAll();
 
         log.info("Ejecutando el controlador Spring MVC");
 
-        //model.addAttribute("personas", personas);
+        model.addAttribute("personas", personas);
         return "index";
     }
 
